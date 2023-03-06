@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+    tools:context=".SubscriptionPackage">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subscription Package"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="30sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/rc_subscribe_package_list"
+        android:layout_height="wrap_content"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Proceed"
+        android:textSize="15sp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/btn_package_proceed"
+        android:background="#FA9B01"
+        android:textColor="#fff"
+        android:textAllCaps="false"/>
+</LinearLayout>
