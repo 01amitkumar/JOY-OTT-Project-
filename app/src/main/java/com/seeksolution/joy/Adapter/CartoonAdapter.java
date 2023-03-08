@@ -1,6 +1,5 @@
 package com.seeksolution.joy.Adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -15,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.seeksolution.joy.Model.Cartoon;
-import com.seeksolution.joy.Model.CartoonResponse;
+
 import com.seeksolution.joy.R;
 import com.seeksolution.joy.Video_Player;
 import com.squareup.picasso.Picasso;
@@ -46,6 +45,7 @@ public class CartoonAdapter extends RecyclerView.Adapter<CartoonAdapter.MyView> 
         holder.ImageShimmer.setVisibility(View.VISIBLE);
 
         Picasso.get().load(Uri.parse(cartoonArrayList.get(position).getVedio_banner())).into(holder.imageView);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

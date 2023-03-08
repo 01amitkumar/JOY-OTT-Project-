@@ -6,9 +6,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +48,8 @@ public class Dashboard extends AppCompatActivity {
 
 
     private boolean backPressedOnce = false;
+
+    Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +91,7 @@ public class Dashboard extends AppCompatActivity {
 
                 Intent intent = new Intent(Dashboard.this,MainActivity.class);
                 startActivity(intent);
-                finish();;
+                finish();
             }
         });
 
@@ -113,7 +119,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BannerResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -145,7 +151,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -179,7 +185,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -212,7 +218,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -227,7 +233,7 @@ public class Dashboard extends AppCompatActivity {
                     CartoonResponse cartoonResponse = response.body();
                     int CartoonSize = cartoonResponse.getData().size();
                     for (int i=0; i<CartoonSize; i++){
-                        if (cartoonResponse.getData().get(i).getCategory().equals("Hindi-song")) {
+                        if (cartoonResponse.getData().get(i).getCategory().equals("CSS")) {
                             CSS.add(new Cartoon(cartoonResponse.getData().get(i).getId(),
                                     cartoonResponse.getData().get(i).getVedio_url(),
                                     cartoonResponse.getData().get(i).getVedio_banner(),
@@ -245,7 +251,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -277,7 +283,7 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -309,9 +315,26 @@ public class Dashboard extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<CartoonResponse> call, Throwable t) {
-
+                Toast.makeText(Dashboard.this, "Internet or API connection Failed", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+        // for custom Toast
+
+        toast = new Toast(getApplicationContext());
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.BOTTOM,0,100);
+
+        View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_toast,null);
+        ImageView imageView = view.findViewById(R.id.Toast_ImageView);
+        imageView.setImageResource(R.drawable.logo);
+
+        TextView textView = view.findViewById(R.id.Toast_TextView);
+        textView.setText("Please back again to exit");
+
+        toast.setView(view);
     }
 
 
@@ -324,12 +347,13 @@ public class Dashboard extends AppCompatActivity {
         }
 
         backPressedOnce = true;
-        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
+        toast.show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 backPressedOnce = false;
+
             }
         }, 2000);
     }

@@ -27,10 +27,11 @@ public class Video_Player extends AppCompatActivity {
 
     private VideoView videoView;
     private String VedioUrl, Vediocategory,Vedioyear, Vediodesc ;
-    private TextView t1 , t2 , t3;
+    private TextView t1 , t2 , t3,txt;
 
     private RecyclerView recyclerView1;
     ArrayList<Cartoon> videoList1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class Video_Player extends AppCompatActivity {
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
         t3 = (TextView) findViewById(R.id.t3);
+        txt = findViewById(R.id.more_desc);
 
         VedioUrl = getIntent().getStringExtra("vedio_url");
         Vediocategory = getIntent().getStringExtra("vedio_category");
@@ -60,6 +62,9 @@ public class Video_Player extends AppCompatActivity {
         MediaController mediaController = new MediaController(this);
         videoView.setMediaController(mediaController);
         videoView.start();
+
+
+
 
         recyclerView1=(RecyclerView) findViewById(R.id.rv);
         //        1st recylerview
@@ -87,6 +92,7 @@ public class Video_Player extends AppCompatActivity {
                                     modelResponse.getData().get(i).getRating(),
                                     modelResponse.getData().get(i).getCategory()
                             ));
+                            txt.setText(modelResponse.getData().get(i).getVedio_description());
                         }
                     }
                     CartoonAdapter adapter = new CartoonAdapter(getApplicationContext(), videoList1);

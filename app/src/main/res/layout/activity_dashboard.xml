@@ -94,7 +94,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:id="@+id/rc_Cartoon"/>
 
 
@@ -109,7 +109,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:id="@+id/rc_Movies"/>
 
                     <TextView
@@ -123,7 +123,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:id="@+id/rc_Songs"/>
 
                     <TextView
@@ -137,7 +137,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:id="@+id/rc_css"/>
 
                     <TextView
@@ -151,7 +151,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/rc_html"/>
 
@@ -167,7 +167,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:layout_marginBottom="5dp"
                         android:id="@+id/rc_Hollywood"/>
 
