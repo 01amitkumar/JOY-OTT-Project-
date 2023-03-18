@@ -6,6 +6,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +37,6 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        getSupportActionBar().hide();
 
 
         et_email = findViewById(R.id.et_email);
@@ -83,7 +84,7 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
 
                             editor.commit();
 
-                            Intent intent = new Intent(getApplicationContext(),Dashboard.class);
+                            Intent intent = new Intent(getApplicationContext(),DashBoardPage.class);
                             startActivity(intent);
                             finish();
 
@@ -113,7 +114,27 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
     // for email
     public boolean validationEmail(String email){
         if(email.isEmpty()){
-            txt_email.setText("Enter Email*");
+            txt_email.setText("Field is required*");
+            et_email.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_email.setText("Field is required*");
+                    }else {
+                        txt_email.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return false;
         }
         else if (!Email_Address_Regex.matcher(email).matches()){
@@ -121,17 +142,35 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
             return  false;
 
         }
-
         txt_email.setText("");
         return true;
-
     }
 
 
     // for Password
     public boolean validationPassword(String password){
         if (password.isEmpty()){
-            txt_password.setText("Enter Password*");
+            txt_password.setText("Field is required*");
+            et_password.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_password.setText("Field is required*");
+                    }else {
+                        txt_password.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return  false;
         }
         else if(!PASSWORD_ADDRESS_REGEX.matcher(password).matches()){

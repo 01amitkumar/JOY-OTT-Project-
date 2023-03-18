@@ -37,14 +37,14 @@ public class RetrofitClient {
                 .client(httpClient.build()).build();
 
     }
-    public static  synchronized RetrofitClient getInstance(){
+    public static synchronized RetrofitClient getInstance(){
         if (instance==null){
             instance =new RetrofitClient();
         }
         return  instance;
     }
     public Api getAPI(){
-        return   retrofit.create(Api.class);
+        return retrofit.create(Api.class);
 
     }
 }

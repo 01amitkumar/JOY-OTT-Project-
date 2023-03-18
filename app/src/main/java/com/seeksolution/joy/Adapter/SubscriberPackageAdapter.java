@@ -61,7 +61,6 @@ public class SubscriberPackageAdapter extends RecyclerView.Adapter<SubscriberPac
         holder.tv_package_desc.setText(packageArrayList.get(position).getPackage_desc());
 
 
-
         Picasso.get().load(Uri.parse(packageArrayList.get(position).package_pic)).into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {

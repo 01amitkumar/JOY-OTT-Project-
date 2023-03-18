@@ -1,5 +1,6 @@
 package com.seeksolution.joy.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -53,7 +54,7 @@ public class CartoonAdapter extends RecyclerView.Adapter<CartoonAdapter.MyView> 
                 holder.shimmerFrameLayout.hideShimmer();
                 holder.ImageShimmer.setVisibility(View.GONE);
             }
-        },2000);
+        },1000);
     }
 
     @Override
@@ -84,6 +85,8 @@ public class CartoonAdapter extends RecyclerView.Adapter<CartoonAdapter.MyView> 
             intent.putExtra("vedio_year",item.getYear());
             intent.putExtra("vedio_desc",item.getVedio_description());
             context.startActivity(intent);
+//            ((Activity) context).finish();
+
         }
     }
 }

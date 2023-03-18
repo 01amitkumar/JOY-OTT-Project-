@@ -5,14 +5,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.seeksolution.joy.Adapter.CartoonAdapter;
+import com.seeksolution.joy.Adapter.ForMoreVideos;
 import com.seeksolution.joy.Api.RetrofitClient;
 import com.seeksolution.joy.Model.Cartoon;
 import com.seeksolution.joy.Model.CartoonResponse;
@@ -23,11 +27,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Video_Player extends AppCompatActivity {
+public class Video_Player extends AppCompatActivity implements View.OnClickListener {
 
     private VideoView videoView;
-    private String VedioUrl, Vediocategory,Vedioyear, Vediodesc ;
-    private TextView t1 , t2 , t3,txt;
+    private String VedioUrl, Vediocategory,Vedioyear, Vediodesc, forMoreVideos ;
+    private TextView t1 , t2 , t3;
+    private ImageView share;
+    String videoUrl;
 
     private RecyclerView recyclerView1;
     ArrayList<Cartoon> videoList1;
@@ -38,25 +44,25 @@ public class Video_Player extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
 
-        getSupportActionBar().hide();
 
         videoView = (VideoView) findViewById(R.id.video_player);
+        share = findViewById(R.id.share);
+        share.setOnClickListener(this);
         t1 = (TextView) findViewById(R.id.t1);
         t2 = (TextView) findViewById(R.id.t2);
         t3 = (TextView) findViewById(R.id.t3);
-        txt = findViewById(R.id.more_desc);
 
         VedioUrl = getIntent().getStringExtra("vedio_url");
         Vediocategory = getIntent().getStringExtra("vedio_category");
         Vedioyear = getIntent().getStringExtra("vedio_year");
         Vediodesc = getIntent().getStringExtra("vedio_desc");
 
+
         t1.setText(Vediocategory);
         t2.setText(Vedioyear+"   :  "+Vediocategory+"  :  "+"Hindi");
         t3.setText(Vediodesc);
 
         videoView.setVideoURI(Uri.parse(VedioUrl));   //Raw folder => Audio vedio file => local Video
-
         videoView.start();
 //        videoView.pause();
         MediaController mediaController = new MediaController(this);
@@ -67,7 +73,7 @@ public class Video_Player extends AppCompatActivity {
 
 
         recyclerView1=(RecyclerView) findViewById(R.id.rv);
-        //        1st recylerview
+        // 1st recylerview
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
 
         //Calling of Api Retrofit
@@ -91,12 +97,19 @@ public class Video_Player extends AppCompatActivity {
                                     modelResponse.getData().get(i).getYear(),
                                     modelResponse.getData().get(i).getRating(),
                                     modelResponse.getData().get(i).getCategory()
+
                             ));
-                            txt.setText(modelResponse.getData().get(i).getVedio_description());
+                            videoUrl= modelResponse.getData().get(i).getVedio_url();
                         }
+
                     }
-                    CartoonAdapter adapter = new CartoonAdapter(getApplicationContext(), videoList1);
-                    recyclerView1.setAdapter(adapter);
+
+
+//                    CartoonAdapter adapter = new CartoonAdapter(getApplicationContext(), videoList1);
+//                    recyclerView1.setAdapter(adapter);
+
+                    ForMoreVideos forMoreVideos = new ForMoreVideos(getApplicationContext(),videoList1);
+                    recyclerView1.setAdapter(forMoreVideos);
                 }
             }
 
@@ -107,5 +120,13 @@ public class Video_Player extends AppCompatActivity {
         });
 
         //recyclerview1 end
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT,videoUrl);
+        startActivity(Intent.createChooser(intent,"Share via"));
     }
 }

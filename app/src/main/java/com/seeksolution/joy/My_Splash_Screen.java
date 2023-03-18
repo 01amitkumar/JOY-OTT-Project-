@@ -13,7 +13,6 @@ public class My_Splash_Screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_splash_screen);
 
-        getSupportActionBar().hide();
 
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(My_Splash_Screen.this,MainActivity.class);

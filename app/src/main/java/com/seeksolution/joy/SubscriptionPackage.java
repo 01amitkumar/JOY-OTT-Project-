@@ -40,6 +40,7 @@ public class SubscriptionPackage extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_subscription_package);
 
+//        getSupportActionBar().hide();
 
         packagesArrayList = new ArrayList<>();
         rv_package_list = findViewById(R.id.rc_subscribe_package_list);

@@ -204,7 +204,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-condensed-light"
                                 android:layout_gravity="center_vertical"
-                                android:maxLength="50"
+                                android:maxLength="10"
                                 android:id="@+id/et_mobile"
                                 android:inputType="textImeMultiLine"
                                 android:hint="Enter Mobile no"/>

@@ -5,6 +5,8 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -41,8 +43,8 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-
-        getSupportActionBar().hide();
+//
+//        getSupportActionBar().hide();
 
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);
@@ -78,7 +80,7 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         password = et_password.getText().toString().trim();
 
         if (CheckBox_term.isChecked()){
-            if(validateName(name) && validationPassword(password) && ValidationMobile(mobile) && Validation_email(email))   {
+            if(validateName(name) && Validation_email(email) && ValidationMobile(mobile) && validationPassword(password) )   {
                 //  Retrofit Api call
                 Call<CreateUserResponse> call = RetrofitClient.getInstance().getAPI().createUser(name,email,password,mobile);
 
@@ -138,7 +140,27 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 // FOR NAME
     private boolean validateName(String name){
         if (name.isEmpty()){
-            txt_name.setText("Enter Name*");
+            txt_name.setText("Field is required*");
+            et_name.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_name.setText("Field is required*");
+                    }else {
+                        txt_name.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return false;
         }
         if (!NAME_ADDRESS_REGEX.matcher(name).matches()){
@@ -154,7 +176,27 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     // for mobile
     public boolean ValidationMobile(String mobile){
         if (mobile.isEmpty()){
-            txt_mobile.setText("Enter mobile*");
+            txt_mobile.setText("Field is required*");
+            et_mobile.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_mobile.setText("Field is required*");
+                    }else {
+                        txt_mobile.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return false;
 
         } else if (!MOBILE_ADDRESS_REGEX.matcher(mobile).matches()){
@@ -173,7 +215,27 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     //for email
     public boolean Validation_email(String email){
         if (email.isEmpty()){
-            txt_email.setText("Enter Email*");
+            txt_email.setText("Field is required*");
+            et_email.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_email.setText("Field is required*");
+                    }else {
+                        txt_email.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return false;
 
         } else if (!Email_Address_Regex.matcher(email).matches()){
@@ -191,7 +253,27 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
     // for Password
     public boolean validationPassword(String password){
         if (password.isEmpty()){
-            txt_password.setText("Enter Password*");
+            txt_password.setText("Field is required*");
+            et_password.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (s.length()==0){
+                        txt_password.setText("Field is required");
+                    }else {
+                        txt_password.setText("");
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
             return false;
         }
 
