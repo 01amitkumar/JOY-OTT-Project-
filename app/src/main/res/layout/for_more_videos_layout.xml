@@ -22,12 +22,13 @@
         <androidx.cardview.widget.CardView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            app:cardCornerRadius="50dp">
+            app:cardCornerRadius="25dp">
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/ic_launcher"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:scaleType="fitXY"
+                android:background="#000"
                 android:id="@+id/logo"/>
 
         </androidx.cardview.widget.CardView>

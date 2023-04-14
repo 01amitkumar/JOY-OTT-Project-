@@ -142,15 +142,19 @@
                             android:layout_marginStart="5dp"
                             android:layout_height="25dp"
                             android:background="@drawable/google"/>
+
+
                         <TextView
                             android:layout_width="match_parent"
                             android:gravity="center_horizontal"
                             android:layout_height="wrap_content"
                             android:textColor="#fff"
-                            android:id="@+id/googleLogin"
+
                             android:fontFamily="sans-serif-condensed-light"
                             android:textSize="20sp"
                             android:text="@string/login_with_google"/>
+
+
 
                     </LinearLayout>
                 </LinearLayout>

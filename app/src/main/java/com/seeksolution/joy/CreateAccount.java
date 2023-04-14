@@ -3,11 +3,14 @@ package com.seeksolution.joy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -43,8 +46,25 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
-//
-//        getSupportActionBar().hide();
+
+        // Get a reference to the root layout of your activity/fragment
+        View rootView = findViewById(android.R.id.content);
+
+        // Set a touch listener on the root layout
+        rootView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Create an InputMethodManager instance
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                // Hide the soft keyboard
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+
+                // Return false to indicate that the touch event has not been consumed
+                return false;
+            }
+        });
+
 
         et_name = findViewById(R.id.et_name);
         et_email = findViewById(R.id.et_email);

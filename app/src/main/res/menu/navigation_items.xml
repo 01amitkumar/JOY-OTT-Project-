@@ -6,9 +6,13 @@
         android:id="@+id/Home"
         android:title="Home"/>
 
+    <item android:id="@+id/profile"
+        android:title="Profile"/>
+
     <item
         android:id="@+id/Share"
-        android:title="Share"/>
+        android:title="Share"
+        android:titleCondensed="5sp"/>
 
     <item
         android:id="@+id/Logout"

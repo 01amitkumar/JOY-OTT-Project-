@@ -1,6 +1,7 @@
 package com.seeksolution.joy;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,8 +16,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -33,10 +36,11 @@ public class DashBoardPage extends AppCompatActivity {
     Toolbar toolbar;
     DrawerLayout drawerLayout;
     TextView dashboard_emailId,userName;
-
+    ImageView UserPhoto;
 
     Toast toast;
     private boolean backPressedOnce = false;
+
 
 
     @Override
@@ -60,6 +64,9 @@ public class DashBoardPage extends AppCompatActivity {
         View headerLayout = navigationView.getHeaderView(0);
         dashboard_emailId = headerLayout.findViewById(R.id.dashboard_emailId);
 
+        View UserImg = navigationView.getHeaderView(0);
+        UserPhoto = UserImg.findViewById(R.id.UserPhoto);
+
 
         SharedPreferences sharedPreferences = getSharedPreferences("user_data",MODE_PRIVATE);
         String user_id =  sharedPreferences.getString("user_id",null);
@@ -71,6 +78,8 @@ public class DashBoardPage extends AppCompatActivity {
             userName.setText(user_name);
 
         }
+
+
 
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.OpenDrawer,R.string.OffDrawer);
@@ -88,7 +97,11 @@ public class DashBoardPage extends AppCompatActivity {
                 if(id==R.id.Home){
                     loadFragment(new Home_Fragment(),0);
 
-                }else if(id==R.id.Share){
+                }else if (id==R.id.profile){
+//                    loadFragment(new Profile(),0);
+                    Toast.makeText(DashBoardPage.this, "This is Profile Page", Toast.LENGTH_LONG).show();
+                }
+                else if(id==R.id.Share){
 
                     Intent intent = new Intent(Intent.ACTION_SEND);
                     intent.setType("text/plain");
@@ -107,10 +120,8 @@ public class DashBoardPage extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }
-
                 //click Auto close
                 drawerLayout.closeDrawer(GravityCompat.START);
-
                 return true;
             }
         });
@@ -118,7 +129,6 @@ public class DashBoardPage extends AppCompatActivity {
 
 
         // for custom Toast
-
         toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.setGravity(Gravity.BOTTOM,0,100);
@@ -126,12 +136,12 @@ public class DashBoardPage extends AppCompatActivity {
         View view = LayoutInflater.from(getApplicationContext()).inflate(R.layout.custom_toast,null);
         ImageView imageView = view.findViewById(R.id.Toast_ImageView);
         imageView.setImageResource(R.drawable.logo);
-
         TextView textView = view.findViewById(R.id.Toast_TextView);
         textView.setText(" Please back again to exit");
-
         toast.setView(view);
+
     }
+
 
 
 
@@ -171,5 +181,4 @@ public class DashBoardPage extends AppCompatActivity {
 
         new Handler().postDelayed(() -> backPressedOnce = false, 2000);
     }
-
 }

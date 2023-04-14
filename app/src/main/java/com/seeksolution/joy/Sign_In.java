@@ -3,12 +3,15 @@ package com.seeksolution.joy;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,17 +49,18 @@ public class Sign_In extends AppCompatActivity implements View.OnClickListener {
         button = findViewById(R.id.goto_Dashboard);
 
         forget_password = findViewById(R.id.forget_password);
-
-//        forget_password.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(),Forget_Password.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
         button.setOnClickListener(this);
+
+        View view = findViewById(android.R.id.content);
+
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(),0);
+                return false;
+            }
+        });
     }
 
     @Override

@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 android:gravity="center"
+                android:id="@+id/UserPhoto"
                 android:src="@drawable/userlogo"
                 android:contentDescription="header_image" />
 

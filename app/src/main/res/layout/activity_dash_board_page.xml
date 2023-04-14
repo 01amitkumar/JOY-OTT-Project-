@@ -21,7 +21,18 @@
         android:fitsSystemWindows="true"
         android:id="@+id/navigationView"
         app:headerLayout="@layout/header_layout"
-        app:menu="@menu/navigation_items" />
+        app:menu="@menu/navigation_items">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 1.0.0"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="10dp"/>
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

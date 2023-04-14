@@ -71,7 +71,6 @@ public class Video_Player extends AppCompatActivity implements View.OnClickListe
 
 
 
-
         recyclerView1=(RecyclerView) findViewById(R.id.rv);
         // 1st recylerview
         recyclerView1.setLayoutManager(new LinearLayoutManager(getApplicationContext(),LinearLayoutManager.VERTICAL,false));
@@ -101,8 +100,8 @@ public class Video_Player extends AppCompatActivity implements View.OnClickListe
                             ));
                             videoUrl= modelResponse.getData().get(i).getVedio_url();
                         }
-
                     }
+
 
 
 //                    CartoonAdapter adapter = new CartoonAdapter(getApplicationContext(), videoList1);
@@ -124,9 +123,10 @@ public class Video_Player extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_SEND);
+        Intent intent = new Intent(android.content.Intent.ACTION_SEND);
         intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT,videoUrl);
+        intent.putExtra(Intent.EXTRA_SUBJECT,"Insert Subject here");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT,videoUrl);
         startActivity(Intent.createChooser(intent,"Share via"));
     }
 }
